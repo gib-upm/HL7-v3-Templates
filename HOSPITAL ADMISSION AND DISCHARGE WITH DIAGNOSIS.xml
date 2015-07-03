@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 CDA.xsd">
+	<typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3"/>
+	<templateId root="2.16.840.1.113883.3.27.1776"/>
+	<id extension="1.0" root="%%MESSAGE_ID%%"/>
+	<title>%%TITLE_FOR_THIS_DOCUMENT%%</title>
+	<effectiveTime value="%%DATE_OF_THE_CREATION_OF_THIS_DOCUMENT(YYYYMMDDHHMMSS)%%"/>
+	<confidentialityCode code="R" codeSystem="2.16.840.1.113883.5.25"/>
+	<languageCode code="en-US"/>
+	<setId extension="1.0" root="2.25.299518904337880959076241620201932965147.6.1"/>
+	<versionNumber value="1"/>
+	<recordTarget>
+		<patientRole>
+			<id extension="%%PATIENT_ID%"/>
+			<patient>
+				<name>%%PATIENT_NAME%%</name>
+				<administrativeGenderCode code="%%M(Male), F(Female), UN (Undifferentiated)%%" codeSystem="2.16.840.1.113883.5.1"/>
+				<birthTime value="%%BIRTHDATE(YYYYMMDDHHMMSS)%%"/>
+			</patient>
+		</patientRole>
+	</recordTarget>	
+	<component>
+		<structuredBody>
+			<component>
+				<section>
+					<templateId root="2.16.840.1.113883.10.20.22.2.43"/>
+					<code code="46241-6" 
+						codeSystem="2.16.840.1.113883.6.1" 
+						codeSystemName="LOINC" 
+						displayName="Hospital Admission Diagnosis"/>
+					<title>HOSPITAL ADMISSION DIAGNOSIS</title>
+					<text>%%OPTIONAL:BRIEF_LITERAL_DESCRIPTION_OF_THE_REASON_OF_THE_ADMISSION_INTO_THE_HOSPITAL%%</text>
+					<effectiveTime value="%%DATE_OF_ADMISION(YYYYMMDDHHMMSS%%"/>
+					<act classCode="ACT" moodCode="EVN">
+						<templateId root="none"/>
+						<id root="%%ID_OF_THE_ADMISSION_ACT%%"/>
+						<code code="46241-6" 
+							codeSystem="2.16.840.1.113883.6.1" 
+							codeSystemName="LOINC" 
+							displayName="HOSPITAL ADMISSION DIAGNOSIS"/>
+						<effectiveTime value="%%DATE_OF_ADMISION(YYYYMMDDHHMMSS%%"/>
+						<participant>
+							<participantRole classCode="SDLOC">
+								<templateId root=""/>
+								<code code="32485007"
+									codeSystem="2.16.840.1.113883.5.111"
+									codeSystemName="SNOMED CT"
+									displayName="Hospital admission (procedure)"/>
+								<addr>
+									<streetAddressLine>%%STREET%%</streetAddressLine>
+									<city>%%CITY%%</city>
+									<state>%%STATE%</state>
+									<postalCode>%%POSTALCODE%%</postalCode>
+									<country>%%COUNTRY%%</country>
+								</addr>
+								<telecom value="%%TELEPHONE%%" use="WP"/>
+								<playingEntity classCode="PLC" moodCode="INSTANCE">
+									<id extension="%%UNIQUE_IDENTIFIER_OF_THE_CLINIC/HOSPITAL%%"/>
+									<name>%%NAME_OF_THE_CLINIC/HOSPITAL%%</name>
+									<code code="32485007"
+										codeSystem="2.16.840.1.113883.6.96"
+										codeSystemName="SNOMED CT"
+										displayName="Hospital admission (procedure)"/>
+
+								</playingEntity>
+							</participantRole>
+						</participant>
+						<participant>
+							<participantRole classCode="SDLOC">
+								<playingEntity classCode="HB" moodCode="INSTANCE">
+									<id extension="%%UNIQUE_IDENTIFIER_OF_THE_BED%%"/>
+									<code code="91537007"
+										codeSystem="2.16.840.1.113883.5.111"
+										codeSystemName="SNOMED CT"
+										displayName="Hospital bed"/>	
+								</playingEntity>
+							</participantRole>
+						</participant>
+						<participant>
+							<participantRole classCode="SDLOC">
+								<playingEntity classCode="HR" moodCode="INSTANCE">
+									<id extension="%%UNIQUE_IDENTIFIER_OF_THE_ROOM%%"/>
+									<code code="223398003"
+										codeSystem="2.16.840.1.113883.5.111"
+										codeSystemName="SNOMED CT"
+										displayName="Room of building"/>
+								</playingEntity>
+							</participantRole>
+						</participant>
+						<participant>
+							<participantRole classCode="SDLOC">
+								<playingEntity classCode="HU" moodCode="INSTANCE">
+								<!-- this is an example, use any of the children of the SNOMED code [224884006]  Location within hospital premises -->
+									<id extension="%%UNIQUE_IDENTIFIER_OF_THE_STATION%%"/>
+									<code code="224890005" 
+										codeSystem="2.16.840.1.113883.5.111"
+										codeSystemName="SNOMED CT"
+										displayName="Hospital reception area"/>
+								</playingEntity>
+							</participantRole>
+						</participant>
+					</act>
+				</section>
+			</component>
+			<component>			
+				<section>
+					<!-- Discharge Summary Hospital Discharge Diagnosis Template Id -->
+					<templateId root="2.16.840.1.113883.10.20.22.2.24"/>
+					<id extension="9937012" root="2.16.840.1.113883.19"/>
+					<code code="11535-2" 
+						displayName="Hospital Discharge Diagnosis" 
+						codeSystem="2.16.840.1.113883.6.1" 
+						codeSystemName="LOINC"/>
+					<title>Hospital Discharge Diagnosis</title>
+					<text>%%OPTIONAL:BRIEF_LITERAL_DESCRIPTION_OF_THE_DIAGNOSIS%%</text>
+					<effectiveTime value="%%DATE_OF_DISCHARGE(YYYYMMDDHHMMSS)%%"/>
+					<entry>
+						<act classCode="ACT" moodCode="EVN">
+							<!--Hospital discharge diagnosis act -->
+							<templateId root="2.16.840.1.113883.10.20.22.4.33"/>
+							<id root="%%ID_OF_THE_DISCHARGE_ACT%%"/>
+							<code code="11535-2" 
+								codeSystem="2.16.840.1.113883.6.1" 
+								codeSystemName="LOINC" 
+								displayName="HOSPITAL DISCHARGE DIAGNOSIS"/>
+							<statusCode code="active"/>
+							<effectiveTime value="%%DATE_OF_DISCHARGE(YYYYMMDDHHMMSS)%%"/>
+							<entryRelationship typeCode="SUBJ" inversionInd="false">
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.22.4.4"/>
+									<!-- Problem Observation template -->
+									<id root="%%ID_OF_THE_OBSERVATION%%"/>
+									<code code="282291009" 
+										codeSystem="2.16.840.1.113883.6.96" 
+										codeSystemName="SNOMED CT" 
+										displayName="Diagnosis"/>
+									<text>
+										<item>%%OPTIONAL:BRIEF_LITERAL_DESCRIPTION_OF_THE_DIAGNOSIS%%</item>
+									</text>
+									<statusCode code="completed"/>
+									<effectiveTime value="%%DATE_OF_DIAGNOSIS(YYYYMMDDHHMMSS)%%"/>
+									<value xsi:type="CD" code="%%DIAGNOSIS_COREDATASET_CONCEPT_CODE%%" 
+														codeSystem="%%HL7_CODE_FOR_THE_VOCABULARY%%" 
+														codeSystemName="%%NAME_OF_THE_VOCABULARY_USED%%" 
+														displayName="%%LITERAL_OF_THE_USED_TERM%%"/>
+								</observation>
+							</entryRelationship>
+							<!--ADD ANY ENTRYRELATIONSHIPS AS DIAGNOSIS OBTAINEN AT THE HOSPITAL-->
+						</act>
+					</entry>
+				</section>
+			</component>
+		</structuredBody>
+	</component>
+</ClinicalDocument>
