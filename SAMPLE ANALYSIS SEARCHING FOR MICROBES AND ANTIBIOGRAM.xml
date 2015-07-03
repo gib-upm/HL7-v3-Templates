@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 CDA.xsd">
+	<typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3"/>
+	<templateId root="2.16.840.1.113883.3.27.1776"/>
+	<id extension="1.0" root="%%MESSAGE_ID%%"/>
+	<title>%%TITLE_FOR_THIS_DOCUMENT%%</title>
+	<effectiveTime value="%%DATE_OF_THE_CREATION_OF_THIS_DOCUMENT(YYYYMMDDHHMMSS)%%"/>
+	<confidentialityCode code="R" codeSystem="2.16.840.1.113883.5.25"/>
+	<languageCode code="en-US"/>
+	<setId extension="1.0" root="2.25.299518904337880959076241620201932965147.6.1"/>
+	<versionNumber value="1"/>
+	<recordTarget>
+		<patientRole>
+			<id extension="%%PATIENT_ID%"/>
+			<patient>
+				<name>%%PATIENT_NAME%%</name>
+ 				<administrativeGenderCode code="%%M(Male), F(Female), UN (Undifferentiated)%%" codeSystem="2.16.840.1.113883.5.1"/>
+				<birthTime value="%%BIRTHDATE(YYYYMMDDHHMMSS)%%"/>
+			</patient>
+		</patientRole>
+	</recordTarget>	
+	<component>
+		<structuredBody>
+			<component>
+				<section>
+					<entry>
+						<observation classCode="OBS" moodCode="EVN">
+							<templateId root=""/> 
+							<id root="%%ID_OF_THE_OBSERVATION%%"/>
+							<code code="82106000"
+								displayName="Bacterial antibiogram analysis"
+								codeSystem="2.16.840.1.113883.6.96" 
+								codeSystemName="SNOMED CT"/>
+							<statusCode code="%%STATUS_OF_THE_OBSERVATION%%"/>
+							<effectiveTime value="%%DATE_OF_SAMPLE_TAKING(YYYYMMDDHHMMSS%%"/>
+							<targetSiteCode code="%%TARGETSITE_COREDATASET_CONCEPT_CODE%%" 
+										codeSystem="%%TARGETSITE_HL7_CODE_FOR_THE_VOCABULARY%%" 
+										codeSystemName="%%NAME_OF_THE_VOCABULARY_USED%%" 
+										displayName="%%LITERAL_OF_THE_USED_TERM%%"/>
+								<qualifier>
+									<name code="%%QUANTIFIER1_COREDATASET_CONCEPT_CODE%%" 
+										codeSystem="%%QUANTIFIER1_HL7_CODE_FOR_THE_VOCABULARY%%" 
+										codeSystemName="%%NAME_OF_THE_VOCABULARY_USED%%" 
+										displayName="%%LITERAL_OF_THE_USED_TERM%%"/>
+									<value code="%%QUANTIFIER2_COREDATASET_CONCEPT_CODE%%" 
+										codeSystem="%%QUANTIFIER2_HL7_CODE_FOR_THE_VOCABULARY%%" 
+										codeSystemName="%%NAME_OF_THE_VOCABULARY_USED%%" 
+										displayName="%%LITERAL_OF_THE_USED_TERM%%"/>
+								</qualifier>
+							</targetSiteCode>
+							<participant typeCode="SPC">
+								<participantRole classCode="SPEC">
+									<playingEntity classCode="MAT">
+										<code code="%%SPECIMEN_COREDATASET_CONCEPT_CODE%%" 
+											codeSystem="%%QUANTIFIER1_HL7_CODE_FOR_THE_VOCABULARY%%" 
+											codeSystemName="%%NAME_OF_THE_VOCABULARY_USED%%" 
+											displayName="%%LITERAL_OF_THE_USED_TERM%%"/>
+									</playingEntity>
+								</participantRole>
+							</participant>
+							<!-- DETECTED SPECIES MICROBES (REPEAT AS MANY TIMES AS MICROBES DETECTED)-->
+							<entryRelationship typeCode="COMP">
+								<observation classCode="OBS" moodCode="EVN">
+									<!-- Result observation template -->
+									<templateId root="2.16.840.1.113883.10.20.22.4.2"/>
+									<id root="%%ID_OF_THE_OBSERVATION%%"/>
+									<code code="442635007 "
+										displayName="Microbiologic culture positive (finding)"
+										codeSystem="2.16.840.1.113883.6.96" 
+										codeSystemName="SNOMED CT"/>
+										<statusCode code="completed"/>
+									<effectiveTime value="%%DATE_OF_MICROBES_HAVE_BEEN_FOUND(YYYYMMDDHHMMSS)%%"/>
+									<value xsi:type="ST" value="TRUE"/>
+									<methodCode/>
+									<participant typeCode="ALY">
+										<participantRole classCode="SPEC">
+											<playingEntity classCode="MIC">
+												<code code="%%MICROBE_COREDATASET_CONCEPT_CODE%%" 
+													codeSystem="%%QUANTIFIER1_HL7_CODE_FOR_THE_VOCABULARY%%" 
+													codeSystemName="%%NAME_OF_THE_VOCABULARY_USED%%" 
+													displayName="%%LITERAL_OF_THE_USED_TERM%%"/>
+											</playingEntity>
+										</participantRole>
+									</participant>
+
+												
+									<entryRelationship typeCode="COMP">
+										<observation classCode="OBS" moodCode="EVN">
+											<templateId root=""/> 
+											<id root="%%ID_OF_THE_SUSCEPTIBILITY_TEST%%"/>
+											<code code="14788002"
+												displayName="Antimicrobial susceptibility test"
+												codeSystem="2.16.840.1.113883.6.96" 
+												codeSystemName="SNOMED CT"/>
+											<statusCode code="completed"/>
+											<!-- INTERPRETATION OF THE VALUE E.G. SENTITIVE-->
+											<interpretationCode code="%%INTERPRETATION_COREDATASET_CONCEPT_CODE%%" 
+												codeSystem="%%QUANTIFIER1_HL7_CODE_FOR_THE_VOCABULARY%%" 
+												codeSystemName="%%NAME_OF_THE_VOCABULARY_USED%%" 
+												displayName="%%LITERAL_OF_THE_USED_TERM%%"/>
+											<effectiveTime value="%%DATE_OF_THE_ANALYSIS(YYYYMMDDHHMMSS)%%"/>
+											<value xsi:type="ST" value="%%MHK_VALUE%%" unit="MHK"/>
+											<participant typeCode="PRD">
+												<participantRole classCode="MANU">
+													<playingEntity classCode="CHEM">									
+														<code code="%%ANTIBIOTIC_COREDATASET_CONCEPT_CODE%%" 
+															codeSystem="%%QUANTIFIER1_HL7_CODE_FOR_THE_VOCABULARY%%" 
+															codeSystemName="%%NAME_OF_THE_VOCABULARY_USED%%" 
+															displayName="%%LITERAL_OF_THE_USED_TERM%%"/>
+													</playingEntity>
+												</participantRole>
+											</participant>				
+										</observation>
+									</entryRelationship>
+								</observation>
+							</entryRelationship>
+						</observation>
+					</entry>
+				</section>
+			</component>
+		</structuredBody>
+	</component>
+</ClinicalDocument>
